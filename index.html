@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello World 我的第一个网站</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+      color: #fff;
+      text-align: center;
+    }
+    .box {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      padding: 40px 50px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+    h1 {
+      font-size: 32px;
+      margin: 0 0 20px 0;
+    }
+    .time {
+      font-size: 20px;
+      opacity: 0.95;
+    }
+    .time span {
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>Hello World！我是【你的名字】，我的第一个AI开发的网站</h1>
+    <p class="time">当前服务器时间：<span id="serverTime">正在加载…</span></p>
+  </div>
+
+  <script>
+    // 定时从服务器获取时间并显示（每秒刷新一次）
+    async function updateTime() {
+      try {
+        const res = await fetch('/time');
+        const data = await res.json();
+        document.getElementById('serverTime').textContent = data.time;
+      } catch (e) {
+        document.getElementById('serverTime').textContent = '获取时间失败';
+      }
+    }
+    updateTime();                // 页面加载后立即获取一次
+    setInterval(updateTime, 1000); // 之后每秒刷新
+  </script>
+</body>
+</html>
