@@ -13,7 +13,7 @@ const server = http.createServer((req, res) => {
 
   // 1) 访问首页：返回页面
   if (urlPath === '/' || urlPath === '/index.html') {
-    const filePath = path.join(__dirname, 'public', 'index.html');
+    const filePath = path.join(__dirname, 'index.html');
     fs.readFile(filePath, 'utf8', (err, html) => {
       if (err) {
         res.writeHead(500, { 'Content-Type': 'text/plain; charset=utf-8' });
